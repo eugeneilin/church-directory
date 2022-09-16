@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate') %>
+
+  <div class="row mb-5">
+    <div class="col-md-6 offset-md-3">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="card-title text-center">Add Church</h4>
+          <form action="/churches" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="form-label" for="title">Church Name</label>
+              <input class="form-control" type="text" id="title" name="church[title]" autofocus required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="address">Address</label>
+              <input class="form-control" type="text" id="address" name="church[address]" required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="leadPastor">Lead Pastor</label>
+              <input class="form-control" type="text" id="leadPastor" name="church[leadPastor]" required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="phoneNumber">Phone Number</label>
+              <input class="form-control" type="text" id="phoneNumber" name="church[phoneNumber]"
+                placeholder="123-456-7890" required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image(s)</label>
+              <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="description">Description</label>
+              <textarea class="form-control" type="text" id="description" name="church[description]"
+                required></textarea>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-success my-3">Add Church</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
