@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+
+  <div class="mb-3" id="cluster-map"></div>
+
+  <h1 class="h1 text-center my-4">All Churches</h1>
+
+  <% if (churches.length) { for (let church of churches) { %>
+    <div class="card mb-3">
+      <div class="row">
+        <div class="col-4">
+          <% if (church.images.length) { %>
+            <img src="<%= church.images[0].url %>" alt="" class="img-fluid" />
+            <% } else { %>
+              <img src="https://res.cloudinary.com/eb23dksdfj9/image/upload/v1663254888/ChurchSearch/Church_kpx66h.jpg"
+                alt="" class="img-fluid" />
+              <% } %>
+        </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= church.title %>
+            </h5>
+            <p class="card-text">
+              <small class="text-muted">
+                <%= church.address %>
+              </small>
+            </p>
+            <p class="card-text d-none d-lg-block">
+              <%= church.description %>
+            </p>
+            <a href="churches/<%= church._id %>" class="btn btn-primary stretched-link">View Church </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if (!admin) { %>
+      <% } else { %>
+      <div class="mb-5">
+        <h5>Admin Options</h5>
+          <a href="/churches/<%= church._id %>/edit" class="card-link btn btn-info">Edit</a>
+          <form class="d-inline" action="/churches/<%= church._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+          <hr>
+      </div>
+      <% } %>
+        <% } } else { %>
+          <div class="alert alert-secondary" role="alert">
+            No churches found. Please sign in to add a church.
+          </div>
+          <% } %>
+
+            <script>
+              const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+              const churches = { features: <%- JSON.stringify(churches) %>}
+            </script>
+
+            <script src="/js/clusterMap.js"></script>
